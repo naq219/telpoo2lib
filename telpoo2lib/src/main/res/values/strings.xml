@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Telpoo2Lib</string>
+
+    <string name="aau_dialog_title">Đã có phiên bản mới</string>
+
+    <string name="aau_notify_ticker">Đã tìm thấy phiên bản mới, nhấn để nâng cấp</string>
+    <string name="aau_notify_content">Đã tìm thấy phiên bản mới, nhấn để nâng cấp</string>
+
+    <string name="aau_dialog_btn_download">Tải xuống ngay bây giờ</string>
+    <string name="aau_dialog_btn_cancel">Hủy</string>
+
+    <string name="aau_toast_no_new_update">Không có bản cập nhật nào</string>
+
+    <string name="aau_download_progress">Đang tải xuống:%1$d%%</string>
+
+    <string name="aau_dialog_checking">Đang kiểm tra phiên bản</string>
+    <string name="aau_capnhatungdung">Cập nhật ứng dụng</string>
+    <string name="aau_ungdungnaycophienbanmoi">Ứng dụng này có phiên bản mới</string>
+
+
+
+
+</resources>
