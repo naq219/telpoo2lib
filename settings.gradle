@@ -1,1 +1,1 @@
-include ':app', ':telpoo2lib'
+include ':telpoo2lib', ':example'
