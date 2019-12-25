@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Build;
 
+import com.lemy.telpoo2lib.net.Dataget;
 import com.lemy.telpoo2lib.utils.Mlog;
 
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ public class Model implements TaskListener {
 
 
 
-    public void exeTask(TaskParams params, AsyncTask<TaskParams, Void, Task.DataReturn> task) {
+    public void exeTask(TaskParams params, AsyncTask<TaskParams, Void, Dataget> task) {
 
 //		AsyncTask<TaskParams, Void, Boolean> task=null;
 //		task=new Task(this, taskType, list, getContext());
@@ -50,7 +51,7 @@ public class Model implements TaskListener {
 
     }
 
-    public static void executeAsyncTask(Executor executor, AsyncTask<TaskParams, Void, Task.DataReturn> asyncTask, TaskParams[] params) {
+    public static void executeAsyncTask(Executor executor, AsyncTask<TaskParams, Void, Dataget> asyncTask, TaskParams[] params) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             asyncTask.executeOnExecutor(executor, params);
 

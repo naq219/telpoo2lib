@@ -4,8 +4,6 @@ import android.util.Base64;
 import android.util.Log;
 
 
-import com.lemy.telpoo2lib.db.DbLib;
-import com.lemy.telpoo2lib.db.DbLibCache;
 import com.lemy.telpoo2lib.utils.Mlog;
 
 import org.apache.commons.io.IOUtils;
@@ -198,25 +196,25 @@ public class NetSupport {
 
     /////
 
-    public  NetData simpleGet(String url, String param){
+    public Dataget simpleGet(String url, String param){
         return request("GET",url,param);
     };
 
-    public  NetData simplePost(String url, String param){
+    public Dataget simplePost(String url, String param){
         return request("POST",url,param);
     };
 
-    public  NetData simplePut(String url, String param){
+    public Dataget simplePut(String url, String param){
         return request("PUT",url,param);
     };
 
-    public  NetData simpleDelete(String url, String param){
+    public Dataget simpleDelete(String url, String param){
         return request("DELETE",url,param);
     };
 
 
-    public  NetData request(String method, String url, String param){
-        NetData data = new NetData();
+    public Dataget request(String method, String url, String param){
+        Dataget data = new Dataget();
 
         String res = NetSupport.getInstance().methodHttp(method,url,param);
         Log.d("telpoo", "url: " + url);
@@ -225,11 +223,11 @@ public class NetSupport {
         try {
             JSONObject dataResponse = new JSONObject(""+res);
             if (dataResponse.optInt("status", 2)!=1) {
-                data.setCode(NetData.CODE_FALSE);
+                data.setCode(Dataget.CODE_FALSE);
                 data.setMessage(dataResponse.optString("msg", "Có lỗi api"));
                 return data;
             }
-            data.setCode(NetData.CODE_SUCCESS);
+            data.setCode(Dataget.CODE_SUCCESS);
 
             if (!dataResponse.has("data")   ) {
                 data.setSuccess(dataResponse);
@@ -241,11 +239,11 @@ public class NetSupport {
 
 
         } catch (JSONException e) {
-            data.setCode(NetData.CODE_FALSE);
+            data.setCode(Dataget.CODE_FALSE);
             data.setMessage("Không đúng định dạng json");
         } catch (Exception e) {
             e.printStackTrace();
-            data.setCode(NetData.CODE_FALSE);
+            data.setCode(Dataget.CODE_FALSE);
         }
         return data;
     }

@@ -3,13 +3,10 @@ package com.lemy.telpoo2lib.model;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.lemy.telpoo2lib.net.NetData;
+import com.lemy.telpoo2lib.net.Dataget;
 import com.lemy.telpoo2lib.utils.Mlog;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-public class Task extends AsyncTask<TaskParams, Void, Task.DataReturn> {
+public class Task extends AsyncTask<TaskParams, Void, Dataget> {
 
     private static final String DEFAULT_KEY_PARRAM = "DEFAULT_KEY_PARRAM";
 //    protected final Boolean TASK_FAILED = false;
@@ -33,29 +30,29 @@ public class Task extends AsyncTask<TaskParams, Void, Task.DataReturn> {
      */
 
 
-    public class DataReturn{
-        boolean status=false;
-        Object data;
-        Integer queue=null;
-
-
-
-        public void setFail(){
-            status=false;
-        };
-        public void setDataSuccess(Object data){
-            status=true;
-            this.data=data;
-        }
-
-        public void setFromNetData(NetData netData) {
-            status=netData.isSuccess();
-            data=netData.getData();
-
-        }
-
-
-    }
+//    public class DataReturn{
+//        boolean status=false;
+//        Object data;
+//        Integer queue=null;
+//
+//
+//
+//        public void setFail(){
+//            status=false;
+//        };
+//        public void setDataSuccess(Object data){
+//            status=true;
+//            this.data=data;
+//        }
+//
+//        public void setFromNetData(Dataget netData) {
+//            status=netData.isSuccess();
+//            data=netData.getData();
+//
+//        }
+//
+//
+//    }
 
     public void setQueue(Integer queue) {
         this.queue=queue;
@@ -100,7 +97,7 @@ public class Task extends AsyncTask<TaskParams, Void, Task.DataReturn> {
 
 
     public void exe(TaskParams taskParams) {
-        this.baseModel.exeTask(taskParams, this);
+        this.baseModel.exeTask(taskParams, Task.this);
     }
 
 
@@ -112,22 +109,22 @@ public class Task extends AsyncTask<TaskParams, Void, Task.DataReturn> {
     }
 
     @Override
-    protected DataReturn doInBackground(TaskParams... params) {
+    protected Dataget doInBackground(TaskParams... params) {
 
-        return new DataReturn();
+        return new Dataget();
 
     }
 
 
     @Override
-    protected void onPostExecute(DataReturn result) {
-        boolean isSucces= result.status;
+    protected void onPostExecute(Dataget result) {
+        boolean isSucces= result.isSuccess();
         if (isCancelled()) {
             Mlog.D("Canceled TaskType=" + taskType);
             return;
         }
 
-        if (isSucces)baseModel.onSuccess(taskType, result.data, msg,queue);
+        if (isSucces)baseModel.onSuccess(taskType, result.getData(), msg,queue);
         else baseModel.onFail(taskType, msg,queue);
 
     }

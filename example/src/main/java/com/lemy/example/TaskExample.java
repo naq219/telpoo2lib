@@ -5,6 +5,7 @@ import android.content.Context;
 import com.lemy.telpoo2lib.model.Model;
 import com.lemy.telpoo2lib.model.Task;
 import com.lemy.telpoo2lib.model.TaskParams;
+import com.lemy.telpoo2lib.net.Dataget;
 
 import java.util.Random;
 
@@ -18,15 +19,15 @@ public class TaskExample extends Task {
     }
 
     @Override
-    protected DataReturn doInBackground(TaskParams... params) {
+    protected Dataget doInBackground(TaskParams... params) {
 
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        DataReturn da= new DataReturn();
-        da.setDataSuccess("sd");
+        Dataget da= new Dataget();
+        da.setData("");
         return da;
 
     }

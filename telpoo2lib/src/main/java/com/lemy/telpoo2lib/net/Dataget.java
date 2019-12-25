@@ -2,7 +2,7 @@ package com.lemy.telpoo2lib.net;
 
 
 
-public class NetData {
+public class Dataget {
     public static final int CODE_ERROR_SERVER=-2;
     public static final int CODE_ERROR_NETWORK=-1;
     public static final int CODE_SUCCESS=1;
@@ -13,6 +13,12 @@ public class NetData {
     public void setData(Object data){
         this.data=data;
     }
+
+    public void setDataSuccess(Object data){
+        this.data=data;
+        code=CODE_SUCCESS;
+    }
+
     public String getMsg(){
         if(code==CODE_ERROR_NETWORK)msg="Không có kết nối internet, vui lòng kiểm tra lại!";
         if(code==CODE_ERROR_SERVER)msg="Không thể kết nối đến máy chủ, vui lòng thử lại!";
@@ -48,7 +54,7 @@ public class NetData {
     }
 
     public void setCodeErrorServer(){
-       code=NetData.CODE_ERROR_SERVER;
+       code= Dataget.CODE_ERROR_SERVER;
     }
 
     public void setSuccess(){
