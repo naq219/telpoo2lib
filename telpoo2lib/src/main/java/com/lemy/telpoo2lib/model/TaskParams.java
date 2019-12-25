@@ -69,11 +69,5 @@ public class TaskParams  {
     }
 
 
-    public void setQueue(Integer queue) {
-        put("taskparamqueue",queue);
-    }
-    public Integer getQueue(){
-        if (!param.containsKey("taskparamqueue")) return null;
-        return (Integer) param.get("taskparamqueue");
-    }
+
 }

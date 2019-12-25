@@ -25,7 +25,7 @@ public class TaskExample extends Task {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        DataReturn da= new DataReturn(params);
+        DataReturn da= new DataReturn();
         da.setDataSuccess("sd");
         return da;
 

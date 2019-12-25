@@ -21,9 +21,10 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.mainlayout);
 
-
+            int a=1;
     }
 
     public void click(View view) {
@@ -39,7 +40,7 @@ public class MainActivity extends Activity {
         TaskParams param= new TaskParams();
          queue++;
         Mlog.D("queue vao="+queue);
-        param.setQueue(queue);
+        taskExample.setQueue(queue);
         taskExample.exe(param);
 
 

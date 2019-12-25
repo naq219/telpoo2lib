@@ -20,6 +20,7 @@ public class Task extends AsyncTask<TaskParams, Void, Task.DataReturn> {
 //    protected HashMap<String, Object> param = new HashMap<>();
 
     protected String msg = null;
+    private Integer queue=0;
 
 //    protected ArrayList<?> dataFromModel = null;
 //    protected ArrayList<?> dataReturn = null;
@@ -37,9 +38,7 @@ public class Task extends AsyncTask<TaskParams, Void, Task.DataReturn> {
         Object data;
         Integer queue=null;
 
-        public DataReturn(TaskParams[] params) {
-            setQueueFromTaskParam(params[0].getQueue());
-        }
+
 
         public void setFail(){
             status=false;
@@ -55,15 +54,16 @@ public class Task extends AsyncTask<TaskParams, Void, Task.DataReturn> {
 
         }
 
-        public void setQueueFromTaskParam(Integer queue) {
-            this.queue=queue;
-        }
 
-        public Integer getQueue() {
-            return queue;
-        }
     }
 
+    public void setQueue(Integer queue) {
+        this.queue=queue;
+    }
+
+    public Integer getQueue() {
+        return queue;
+    }
 
     protected Task() {
 
@@ -114,7 +114,7 @@ public class Task extends AsyncTask<TaskParams, Void, Task.DataReturn> {
     @Override
     protected DataReturn doInBackground(TaskParams... params) {
 
-        return new DataReturn(params);
+        return new DataReturn();
 
     }
 
@@ -127,8 +127,8 @@ public class Task extends AsyncTask<TaskParams, Void, Task.DataReturn> {
             return;
         }
 
-        if (isSucces)baseModel.onSuccess(taskType, result.data, msg,result.getQueue());
-        else baseModel.onFail(taskType, msg,result.getQueue());
+        if (isSucces)baseModel.onSuccess(taskType, result.data, msg,queue);
+        else baseModel.onFail(taskType, msg,queue);
 
     }
 
