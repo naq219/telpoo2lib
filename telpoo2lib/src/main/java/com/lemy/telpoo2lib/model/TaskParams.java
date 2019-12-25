@@ -60,10 +60,10 @@ public class TaskParams  {
 
     }
 
-    public BaseObject getTaskParramBaseObject(String key) {
+    public BObject getTaskParramBaseObject(String key) {
 
         if (param.containsKey(key))
-            return (BaseObject) param.get(key);
+            return (BObject) param.get(key);
         return null;
 
     }

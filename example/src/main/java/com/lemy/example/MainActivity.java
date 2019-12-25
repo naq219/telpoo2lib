@@ -2,18 +2,14 @@ package com.lemy.example;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import com.lemy.telpoo2lib.model.BaseObject;
+import com.lemy.telpoo2lib.model.BObject;
 import com.lemy.telpoo2lib.model.Model;
 import com.lemy.telpoo2lib.model.TaskParams;
 import com.lemy.telpoo2lib.utils.Mlog;
-
-import java.util.Random;
-import java.util.Timer;
 
 public class MainActivity extends Activity {
     int queue=0;
@@ -28,7 +24,7 @@ public class MainActivity extends Activity {
     }
 
     public void click(View view) {
-        BaseObject ojj = new BaseObject();
+        BObject ojj = new BObject();
         //if (taskExample!=null) taskExample.cancel(true);
          taskExample = new TaskExample(new Model(){
             @Override

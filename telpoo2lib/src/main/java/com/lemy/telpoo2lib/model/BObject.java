@@ -1,11 +1,6 @@
 package com.lemy.telpoo2lib.model;
 
 import android.content.ContentValues;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.preference.PreferenceManager;
 
 import com.lemy.telpoo2lib.utils.Mlog;
 
@@ -20,18 +15,19 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class BaseObject {
+public class BObject {
 
     protected JSONObject data = null;
 
-    public BaseObject() {
+    public BObject() {
+
     }
 
-    public BaseObject(JSONObject jsonObject) {
+    public BObject(JSONObject jsonObject) {
         data=jsonObject;
     }
 
-    public  BaseObject(String jsonObjectString) {
+    public BObject(String jsonObjectString) {
         try {
             data=new JSONObject(jsonObjectString);
         } catch (JSONException e) {
@@ -241,12 +237,12 @@ public class BaseObject {
 
     }
 
-    public static  List<BaseObject> JsonArray2List(JSONArray ja){
+    public static  List<BObject> JsonArray2List(JSONArray ja){
 
-        List<BaseObject> ojs = new ArrayList<>();
+        List<BObject> ojs = new ArrayList<>();
         try {
         for (int i = 0; i < ja.length(); i++) {
-            BaseObject oj = new BaseObject(ja.getJSONObject(i));
+            BObject oj = new BObject(ja.getJSONObject(i));
             ojs.add(oj);
         }
         return ojs;

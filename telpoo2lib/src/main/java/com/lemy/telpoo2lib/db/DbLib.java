@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 
 
-import com.lemy.telpoo2lib.model.BaseObject;
+import com.lemy.telpoo2lib.model.BObject;
 import com.lemy.telpoo2lib.utils.Mlog;
 
 import java.util.ArrayList;
@@ -181,20 +181,20 @@ public class DbLib extends SQLiteOpenHelper {
     /*
      * @
      */
-    // public synchronized static boolean addList(ArrayList<BaseObject> pl,
+    // public synchronized static boolean addList(ArrayList<BObject> pl,
     // String tableName, String idKey) {
     // if (pl == null)
     // return false;
     // try {
     //
     // openDB();
-    // BaseObject v1 = null;
+    // BObject v1 = null;
     //
     // String[] columns = { idKey };
     // String selection = idKey + " = ?";
     //
     // for (int i = 0; i < pl.size(); i++) {
-    // v1 = (BaseObject) pl.get(i);
+    // v1 = (BObject) pl.get(i);
     // int cou = 0;
     // Cursor cur = null;
     // if (idKey != null) {
@@ -228,16 +228,16 @@ public class DbLib extends SQLiteOpenHelper {
     // }
 
     // success
-    public synchronized static boolean addToTable(ArrayList<BaseObject> pl, String tableName) {
+    public synchronized static boolean addToTable(ArrayList<BObject> pl, String tableName) {
         if (pl == null)
             return false;
         try {
 
             openDB();
-            BaseObject v1 = null;
+            BObject v1 = null;
 
             for (int i = 0; i < pl.size(); i++) {
-                v1 = (BaseObject) pl.get(i);
+                v1 = (BObject) pl.get(i);
 
                 long resultInsertDb = mSqliteDatabase.insert(tableName, null, v1.getDataContentValue());
                 Mlog.D("DBSuppost - resultInsertDb:" + resultInsertDb);
@@ -323,14 +323,14 @@ public class DbLib extends SQLiteOpenHelper {
 
     }
 
-    public static synchronized ArrayList<BaseObject> rawQuery(String query) {
+    public static synchronized ArrayList<BObject> rawQuery(String query) {
         return cursorToOj(get(query));
 
     }
 
-    protected synchronized static ArrayList<BaseObject> cursorToOj(Cursor cur) {
+    protected synchronized static ArrayList<BObject> cursorToOj(Cursor cur) {
 
-        ArrayList<BaseObject> params = new ArrayList<BaseObject>();
+        ArrayList<BObject> params = new ArrayList<BObject>();
         try {
 
             if (cur != null) {
@@ -340,7 +340,7 @@ public class DbLib extends SQLiteOpenHelper {
                     ContentValues vl = new ContentValues();
                     DatabaseUtils.cursorRowToContentValues(cur, vl);
 
-                    BaseObject oj = new BaseObject();
+                    BObject oj = new BObject();
                     oj.putData(vl);
                     params.add(oj);
 
@@ -356,7 +356,7 @@ public class DbLib extends SQLiteOpenHelper {
         return params;
     }
 
-    public static synchronized Boolean update(BaseObject v1, String tableName, String idKey) {
+    public static synchronized Boolean update(BObject v1, String tableName, String idKey) {
         int count = 0;
         openDB();
         count = mSqliteDatabase.update(tableName, v1.getDataContentValue(), idKey + "=?", new String[] { String.valueOf(v1.get(idKey)) });
@@ -437,24 +437,24 @@ public class DbLib extends SQLiteOpenHelper {
      * @return
      */
 
-    public synchronized static ArrayList<BaseObject> getAllOfTable(String tableName, String[] keys) {
+    public synchronized static ArrayList<BObject> getAllOfTable(String tableName, String[] keys) {
 
         ArrayList<ContentValues> params = getAllInTableToCV(tableName, keys, null, null);
-        ArrayList<BaseObject> baseOjs = new ArrayList<BaseObject>();
+        ArrayList<BObject> baseOjs = new ArrayList<BObject>();
         for (int i = 0; i < params.size(); i++) {
-            BaseObject baseOj = new BaseObject();
+            BObject baseOj = new BObject();
             baseOj.putData(params.get(i));
             baseOjs.add(baseOj);
         }
         return baseOjs;
     }
 
-    public synchronized static ArrayList<BaseObject> getAllOfTable(String tableName) {
+    public synchronized static ArrayList<BObject> getAllOfTable(String tableName) {
 
         ArrayList<ContentValues> params = getAllInTableToCV(tableName, null, null);
-        ArrayList<BaseObject> baseOjs = new ArrayList<BaseObject>();
+        ArrayList<BObject> baseOjs = new ArrayList<BObject>();
         for (int i = 0; i < params.size(); i++) {
-            BaseObject baseOj = new BaseObject();
+            BObject baseOj = new BObject();
             baseOj.putData(params.get(i));
             baseOjs.add(baseOj);
         }
@@ -466,7 +466,7 @@ public class DbLib extends SQLiteOpenHelper {
     /*
      *
      */
-    // public synchronized static boolean addToTable(ArrayList<BaseObject> pl,
+    // public synchronized static boolean addToTable(ArrayList<BObject> pl,
     // String tableName, boolean isCheck, String ID) {
     // if (isCheck)
     // return addList(pl, tableName, ID);
@@ -482,7 +482,7 @@ public class DbLib extends SQLiteOpenHelper {
         return delete(tableName, keyID, new String[] { valueID }) > 0;
     }
 
-    public synchronized static ArrayList<BaseObject> selectRow(String table, String key, String value) {
+    public synchronized static ArrayList<BObject> selectRow(String table, String key, String value) {
         String query = "select * from " + table + " where " + key + "='" + value + "'";
         return cursorToOj(get(query));
     }
