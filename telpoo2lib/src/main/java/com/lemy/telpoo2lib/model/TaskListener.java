@@ -10,9 +10,9 @@ import java.util.ArrayList;
 public interface TaskListener {
     Context getContext();
 
-    void onSuccess(int taskType, Object data, String msg);
+    void onSuccess(int taskType, Object data, String msg,Integer queue);
 
-    void onFail(int taskType, String result);
+    void onFail(int taskType, String result,Integer queue);
 
-    void onProgress(int taskType, int progress);
+    void onProgress(int taskType, int progress,Integer queue);
 }

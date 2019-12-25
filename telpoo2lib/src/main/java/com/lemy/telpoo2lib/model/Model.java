@@ -62,21 +62,21 @@ public class Model implements TaskListener {
 
 
     @Override
-    public void onSuccess(int taskType, Object data, String msg) {
+    public void onSuccess(int taskType, Object data, String msg,Integer queue) {
         if (modelListener != null)
-            modelListener.onSuccess(taskType, data, msg);
+            modelListener.onSuccess(taskType, data, msg,queue);
     }
 
     @Override
-    public void onFail(int taskType, String msg) {
+    public void onFail(int taskType, String msg,Integer queue) {
         if (modelListener != null)
-            modelListener.onFail(taskType, msg);
+            modelListener.onFail(taskType, msg,queue);
     }
 
     @Override
-    public void onProgress(int taskType, int progress) {
+    public void onProgress(int taskType, int progress,Integer queue) {
         if (modelListener != null)
-            modelListener.onProgress(taskType, progress);
+            modelListener.onProgress(taskType, progress,queue);
     }
 
     /**

@@ -35,6 +35,12 @@ public class Task extends AsyncTask<TaskParams, Void, Task.DataReturn> {
     public class DataReturn{
         boolean status=false;
         Object data;
+        Integer queue=null;
+
+        public DataReturn(TaskParams[] params) {
+            setQueueFromTaskParam(params[0].getQueue());
+        }
+
         public void setFail(){
             status=false;
         };
@@ -47,6 +53,14 @@ public class Task extends AsyncTask<TaskParams, Void, Task.DataReturn> {
             status=netData.isSuccess();
             data=netData.getData();
 
+        }
+
+        public void setQueueFromTaskParam(Integer queue) {
+            this.queue=queue;
+        }
+
+        public Integer getQueue() {
+            return queue;
         }
     }
 
@@ -100,7 +114,7 @@ public class Task extends AsyncTask<TaskParams, Void, Task.DataReturn> {
     @Override
     protected DataReturn doInBackground(TaskParams... params) {
 
-        return new DataReturn();
+        return new DataReturn(params);
 
     }
 
@@ -113,8 +127,8 @@ public class Task extends AsyncTask<TaskParams, Void, Task.DataReturn> {
             return;
         }
 
-        if (isSucces)baseModel.onSuccess(taskType, result.data, msg);
-        else baseModel.onFail(taskType, msg);
+        if (isSucces)baseModel.onSuccess(taskType, result.data, msg,result.getQueue());
+        else baseModel.onFail(taskType, msg,result.getQueue());
 
     }
 

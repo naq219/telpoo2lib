@@ -27,7 +27,7 @@ public class TaskParams  {
         return taskParams;
     }
 
-    public void put(String key,String value){
+    public void put(String key,Object value){
         param.put(key,value);
     }
     public Object get(String key){
@@ -69,4 +69,11 @@ public class TaskParams  {
     }
 
 
+    public void setQueue(Integer queue) {
+        put("taskparamqueue",queue);
+    }
+    public Integer getQueue(){
+        if (!param.containsKey("taskparamqueue")) return null;
+        return (Integer) param.get("taskparamqueue");
+    }
 }
