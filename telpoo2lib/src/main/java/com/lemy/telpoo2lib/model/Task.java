@@ -16,7 +16,7 @@ public class Task extends AsyncTask<TaskParams, Void, Dataget> {
     protected Context context;
 //    protected HashMap<String, Object> param = new HashMap<>();
 
-    protected String msg = null;
+    //protected String msg = null;
     private Integer queue=0;
 
 //    protected ArrayList<?> dataFromModel = null;
@@ -124,8 +124,8 @@ public class Task extends AsyncTask<TaskParams, Void, Dataget> {
             return;
         }
 
-        if (isSucces)baseModel.onSuccess(taskType, result.getData(), msg,queue);
-        else baseModel.onFail(taskType, msg,queue);
+        if (isSucces)baseModel.onSuccess(taskType, result.getData(), result.getMsg(),queue);
+        else baseModel.onFail(taskType, result.getMsg(),queue);
 
     }
 
@@ -134,4 +134,6 @@ public class Task extends AsyncTask<TaskParams, Void, Dataget> {
 
         this.baseModel = baseModel;
     }
+
+
 }
