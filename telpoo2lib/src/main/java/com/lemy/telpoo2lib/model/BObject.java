@@ -222,6 +222,11 @@ public class BObject {
     public boolean has(String key) {
         return data.has(key);
     }
+    public boolean hasData(String key) {
+        if (!data.has(key)) return false;
+        if ((""+getAsString(key,"")).length()==0) return false;
+        return true;
+    }
 
     public void removeEmpty() {
         ArrayList<String> keys = getKeys();

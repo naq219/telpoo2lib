@@ -3,6 +3,7 @@ package com.lemy.example;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -30,14 +31,14 @@ public class MainActivity extends Activity {
             @Override
             public void onSuccess(int taskType, Object data, String msg, Integer queue1) {
                 super.onSuccess(taskType, data, msg, queue1);
-                Mlog.D("queue="+queue1);
+                Mlog.D("queue="+queue1+data);
+                Toast.makeText(MainActivity.this,"queue="+queue1+data,Toast.LENGTH_LONG).show();
             }
         },123,this);
-        TaskParams param= new TaskParams();
          queue++;
         Mlog.D("queue vao="+queue);
         taskExample.setQueue(queue);
-        taskExample.exe(param);
+        taskExample.exeOj("ahehehihi");
 
 
     }

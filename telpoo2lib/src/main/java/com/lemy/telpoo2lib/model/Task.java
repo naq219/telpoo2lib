@@ -9,50 +9,12 @@ import com.lemy.telpoo2lib.utils.Mlog;
 public class Task extends AsyncTask<TaskParams, Void, Dataget> {
 
     private static final String DEFAULT_KEY_PARRAM = "DEFAULT_KEY_PARRAM";
-//    protected final Boolean TASK_FAILED = false;
-//    protected final Boolean TASK_DONE = true;
     protected Model baseModel;
     protected int taskType;
     protected Context context;
-//    protected HashMap<String, Object> param = new HashMap<>();
 
-    //protected String msg = null;
     private Integer queue=0;
 
-//    protected ArrayList<?> dataFromModel = null;
-//    protected ArrayList<?> dataReturn = null;
-//    protected Object dataFrom = null;
-//    protected Object dataTo = null;
-
-    /**
-     * neu muon clone mot asyntask, goi ham nay, sau do goi @setAllData
-     * @return
-     */
-
-
-//    public class DataReturn{
-//        boolean status=false;
-//        Object data;
-//        Integer queue=null;
-//
-//
-//
-//        public void setFail(){
-//            status=false;
-//        };
-//        public void setDataSuccess(Object data){
-//            status=true;
-//            this.data=data;
-//        }
-//
-//        public void setFromNetData(Dataget netData) {
-//            status=netData.isSuccess();
-//            data=netData.getData();
-//
-//        }
-//
-//
-//    }
 
     public void setQueue(Integer queue) {
         this.queue=queue;
@@ -99,6 +61,11 @@ public class Task extends AsyncTask<TaskParams, Void, Dataget> {
     public void exe(TaskParams taskParams) {
         this.baseModel.exeTask(taskParams, Task.this);
     }
+    public void exeOj(Object oj) {
+        TaskParams taskParams=new TaskParams();
+        taskParams.setTaskParramDeFault(oj);
+        this.baseModel.exeTask(taskParams, Task.this);
+    }
 
 
     @Override
@@ -110,9 +77,10 @@ public class Task extends AsyncTask<TaskParams, Void, Dataget> {
 
     @Override
     protected Dataget doInBackground(TaskParams... params) {
-
+        return doInBackground(params[0]);
+    }
+    protected Dataget doInBackground(TaskParams param0){
         return new Dataget();
-
     }
 
 

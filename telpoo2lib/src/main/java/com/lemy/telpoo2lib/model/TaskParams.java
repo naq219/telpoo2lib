@@ -43,6 +43,9 @@ public class TaskParams  {
     public String getTaskParamDefaultString(){
         return  param.get(DEFAULT_KEY_PARRAM).toString();
     }
+    public Object getTaskParamDefault(){
+        return  param.get(DEFAULT_KEY_PARRAM);
+    }
 
     public String getTaskParramString(String key) {
 

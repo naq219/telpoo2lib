@@ -19,16 +19,16 @@ public class TaskExample extends Task {
     }
 
     @Override
-    protected Dataget doInBackground(TaskParams... params) {
-
+    protected Dataget doInBackground(TaskParams params) {
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         Dataget da= new Dataget();
-        da.setData("");
+        da.setData(""+params.getTaskParamDefault());
         return da;
+
 
     }
 }

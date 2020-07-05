@@ -2,7 +2,10 @@ package com.lemy.telpoo2lib.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class TimeUtils {
 
@@ -101,6 +104,47 @@ public class TimeUtils {
         Calendar ca = Calendar.getInstance();
         ca.setTimeInMillis(time);
         return calToString(ca, format);
+    }
+
+    public static String unixTime2DayinWeek(String timeunix){
+        Calendar cal=TimeUtils.String2Calendar(timeunix,"yyyy-MM-dd");
+        String  day= "Thứ "+String.valueOf(cal.get(Calendar.DAY_OF_WEEK));
+        if (day.contains("1")) day= "Chủ nhật";
+        return day;
+    }
+
+    public static String showVnDate(String ds_date) {
+        Calendar cal = TimeUtils.String2Calendar(ds_date, "yyyy-MM-dd");
+        return TimeUtils.calToString(cal,"dd-MM-yyyy");
+    }
+
+    public static final List<String> timesString = Arrays.asList("năm","tháng","ngày","giờ","phút","giây");
+
+    public static String toCachDay(int duration){
+        return toCachDay(duration*1000L);
+    }
+    public static final List<Long> times = Arrays.asList(
+            TimeUnit.DAYS.toMillis(365),
+            TimeUnit.DAYS.toMillis(30),
+            TimeUnit.DAYS.toMillis(1),
+            TimeUnit.HOURS.toMillis(1),
+            TimeUnit.MINUTES.toMillis(1),
+            TimeUnit.SECONDS.toMillis(1) );
+    public static String toCachDay(long duration) {
+
+        StringBuffer res = new StringBuffer();
+        for(int i=0;i< times.size(); i++) {
+            Long current = times.get(i);
+            long temp = duration/current;
+            if(temp>0) {
+                res.append(temp).append(" ").append( timesString.get(i) );
+                break;
+            }
+        }
+        if("".equals(res.toString()))
+            return "0 giây";
+        else
+            return res.toString();
     }
 
     public static Calendar startDayCal() {
