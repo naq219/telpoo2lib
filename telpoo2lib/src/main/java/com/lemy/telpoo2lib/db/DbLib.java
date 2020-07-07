@@ -59,7 +59,7 @@ public class DbLib extends SQLiteOpenHelper {
 
         if (!isTableExist())
             return createTable();
-
+        mSqliteDatabase.setVersion(db_Version);
         return true;
 
     }
