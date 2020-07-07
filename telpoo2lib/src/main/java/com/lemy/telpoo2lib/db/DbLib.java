@@ -52,6 +52,11 @@ public class DbLib extends SQLiteOpenHelper {
             instance = new DbLib(context.getApplicationContext());
         }
 
+        openDB();
+        if (mSqliteDatabase.needUpgrade(db_Version)){
+            instance.upgradeDB();
+        }
+
         if (!isTableExist())
             return createTable();
 
